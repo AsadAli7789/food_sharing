@@ -83,4 +83,5 @@ export {
   ref,
   uploadBytes,
   getDownloadURL,
+  getStorage
 };

@@ -5,12 +5,18 @@ import {
     getDocs,
     collection,
     db,
+    getStorage,
+    ref,
+    uploadBytes,
+    getDownloadURL,
+    storage,
   } from "../utils/app.js";
 
+  
 
-
-
-
+var divlpc = document.getElementById("Asad")
+var dot = document.getElementById("dots-container")
+var foam = document.getElementById("foam")
 var btn1 = document.getElementById("user-menu-item-2")
 var div1 = document.getElementById("oml")
 var div2 = document.getElementById("lnd")
@@ -25,6 +31,7 @@ var icon = document.getElementById("jkx")
 var divman = document.getElementById("lund")
 var divphone = document.getElementById("huo")
 
+var btn69 = document.getElementById("bputton")
 
 var divcont = document.getElementById("hkl")
 var btn4 = document.getElementById("btn4")
@@ -47,13 +54,13 @@ btn3.addEventListener('click',(e)=>{
   
 
 })
-btn3.addEventListener('click',(e)=>{
-  icon.style.display="none"
-  spn.innerHTML=""
-  spn.innerHTML = ` <i class="fa-regular fa-user  fa-xl" ></i> 
+// btn3.addEventListener('click',(e)=>{
+//   icon.style.display="none"
+//   spn.innerHTML=""
+//   spn.innerHTML = ` <i class="fa-regular fa-user  fa-xl" ></i> 
                   
-                    <span class="fs-5" style="gap: 15px;" id="hop">${inp.value}</span>` 
-})
+//                     <span class="fs-5" style="gap: 15px;" id="hop">${inp.value}</span>` 
+// })
 
 
 btn4.addEventListener("click",(e)=>{
@@ -147,3 +154,36 @@ onAuthStateChanged(auth, (user) => {
         card1.innerHTML += card;
     });
   }
+  // const storage = getStorage(app);
+
+
+ foam.addEventListener("submit", (e) => {
+  e.preventDefault();
+  dot.style.display= "flex"
+  btn69.style.display= "none"
+  btn3.style.display = "none"
+
+    
+    const obj = {
+      image: e.target[0].files[0],
+      
+    };
+
+
+    // divlpc
+    const imageRef = ref(storage, `${new Date().getTime().toString()}/jpeg`);
+    uploadBytes(imageRef, obj.image).then(() => {
+    console.log("Image uploaded");
+
+    getDownloadURL(imageRef).then((url) => {
+      console.log("url ==>", url);
+      obj.image = url;
+      dot.style.display= "none"
+       btn69.style.display= "block"
+       btn3.style.display="flex"
+
+divlpc.innerHTML=`<img  id="uol" class="rounded-circle " width="30px" height="30px" src="${obj.image}" alt="">`
+
+    });
+  });
+});
