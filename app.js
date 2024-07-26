@@ -182,7 +182,8 @@ onAuthStateChanged(auth, (user) => {
        btn69.style.display= "block"
        btn3.style.display="flex"
 
-divlpc.innerHTML=`<img  id="uol" class="rounded-circle " width="30px" height="30px" src="${obj.image}" alt="">`
+divlpc.innerHTML=`<img  id="uol" class="rounded-circle " width="30px" height="30px" src="${obj.image}" alt="">
+ <span class="fs-5" style="gap: 15px;" id="hop">${inp.value}</span>`
 
     });
   });
